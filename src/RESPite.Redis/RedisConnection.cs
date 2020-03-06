@@ -80,6 +80,7 @@ namespace Respite.Redis
             switch (value.Type)
             {
                 case RespType.BlobString:
+                    return value.ToByteArray();
                 case RespType.SimpleString:
                 case RespType.VerbatimString:
                     return value.ToString();

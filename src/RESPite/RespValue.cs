@@ -98,6 +98,20 @@ namespace Respite
         private static Encoding ASCII => Encoding.ASCII;
         private static Encoding UTF8 => Encoding.UTF8;
 
+        public object ToByteArray()
+        {
+            if (_obj0 != null)
+                return _obj0;
+
+            if (_state.Storage == StorageKind.Empty ||
+                _state.Storage == StorageKind.Null)
+#pragma warning disable CS8603 // Possible null reference return.
+                return null;
+#pragma warning restore CS8603 // Possible null reference return.
+
+            return _state.AsSpan().ToArray();
+        }
+
         public override string ToString()
         {
             if (TryGetChars(out var chars))
